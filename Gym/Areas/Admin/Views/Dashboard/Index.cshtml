@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row mt-2">
+    <div class="col-md-3 col-sm-6 mt-2 h-25">
+        <a asp-controller="BioGraphy" asp-action="Index">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h4>BioGraphy</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Sliders" asp-action="Index">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h4>Slider</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Doctors" asp-action="Index">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h4>Doctors</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Blogs" asp-action="Index">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h4>Blogs</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Groups" asp-action="Index">
+            <div class="small-box bg-gradient-purple">
+                <div class="inner">
+                    <h4>Groups</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Certificates" asp-action="Index">
+            <div class="small-box bg-gray-dark">
+                <div class="inner">
+                    <h4>Certificates</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mt-2">
+        <a asp-controller="Requests" asp-action="Index">
+            <div class="small-box bg-gradient-lightblue">
+                <div class="inner">
+                    <h4>Requests</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

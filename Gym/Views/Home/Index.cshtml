@@ -1,0 +1,113 @@
+﻿@model IndexViewModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- banner section start -->
+<div class="banner_section layout_padding">
+    <div id="my_Controls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @for (int i = 0; i < Model.Sliders.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="banner_taital">
+                                <h1 class="find_text">@Model.Sliders[i].Title</h1>
+                                <h2 class="crush_text">@Model.Sliders[i].Subtitle</h2>
+                                <p class="long_text">
+                                    @Model.Sliders[i].Description
+                                </p>
+                            </div>
+                            <div class="contact">
+                                <div class="contact_bt"><a asp-controller="Contact" asp-action="Index">Contact Us</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item ">
+                        <div class="container">
+                            <div class="banner_taital">
+                                <h1 class="find_text">@Model.Sliders[i].Title</h1>
+                                <h2 class="crush_text">@Model.Sliders[i].Subtitle</h2>
+                                <p class="long_text">
+                                    @Model.Sliders[i].Description
+                                </p>
+                            </div>
+                            <div class="contact">
+                                <div class="contact_bt"><a asp-controller="Contact" asp-action="Index">Contact Us</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" href="#my_Controls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#my_Controls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</div>
+<!-- banner section end -->
+<!-- about section start -->
+@for (int i = 0; i < Model.Biographies.Count; i++)
+{
+
+    if (i == 0)
+    {
+        <div class="about_section_2 layout_padding">
+            <div class="container">
+                <h1 class="about_text_2"><strong>ABOUT US</strong></h1>
+            </div>
+        </div>
+        <div class="about_section about_main">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="about_taital">
+                        <h1 class="about_text">ABOUT OUR GYM</h1>
+                        <p class="long_text_2">@Model.Biographies[i].About</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="about_img"><img src="data:image\/*;base64,@(Convert.ToBase64String(Model.Biographies[i].Image))"></div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- about section end -->
+
+
+<!-- our service section start -->
+<div class="our_section layout_padding">
+    <div class="container">
+        <h1 class="our_text"><strong>OUR Blogs</strong></h1>
+        <p class="client_long_text">Check our latest Blogs</p>
+        <div class="row padding_top_0">
+            @for (int i = 0; i < Model.Blogs.Count; i++)
+            {
+                if (i < 3)
+                {
+                    <div class="col-lg-4">
+                        <div class="image_7"><a asp-controller="Blogs" asp-action="Blogdetails" asp-route-id="@Model.Blogs[i].ID"><img src="/images/blogs/@Model.Blogs[i].Image"></a></div>
+                        <h2 class="design_text">@Model.Blogs[i].Title</h2>
+                        <p class="fact_text">@Model.Blogs[i].Description</p>
+                    </div>
+                }
+            }
+            <div class="bt_main">
+                <div class="seemore_bt"><a asp-controller="Blogs" asp-action="Index">See More</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- our service section end -->

@@ -1,0 +1,16 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Photos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3" style="min-height:600px;">
+    @foreach (var group in Model.Group.Images)
+    {
+        <div class="col-md-6">
+            <a href="~/images/images/@group.photo" target="_blank">
+                <img src="~/images/images/@group.photo" style="width:100%; height:300px; object-fit:contain;" />
+            </a>
+        </div>
+    }
+</div>

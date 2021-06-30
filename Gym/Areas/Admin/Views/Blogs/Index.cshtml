@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<a asp-area="Admin" asp-controller="blogs" asp-action="create" class=" btn btn-outline-info">Add New Blogs</a>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-2 parent col-sm-6 col-md-5">
+            <div class="card-header">
+                <h3 class="d-inline-block">@item.Title</h3>
+                <div class="float-right">
+                    <a asp-area="Admin" asp-controller="Blogs" asp-action="Edit" asp-route-id="@item.ID" class="fas fa-edit text-primary"></a>
+                    <a asp-area="Admin" asp-controller="Blogs" asp-action="Details" asp-route-id="@item.ID" class="fas fa-info-circle text-info"></a>
+                    <a href="javascript:;" data-id="@item.ID" class="fas fa-trash text-danger js-delete"></a>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>@item.Description </p>
+                <div >
+                    <div class="col-form-label"><a asp-area="Admin" asp-controller="Blogs" asp-action="Details" asp-route-id="@item.ID">Read more</a></div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on('click', function () {
+                var btn = $(this);
+
+                bootbox.confirm(
+                    {
+                    message: "Are you sure you want to delete this Blog?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-outline-secondary'
+                        }
+                        }
+                        ,
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Admin/Blogs/Delete/' + btn.data('id'),
+                                    success: function () {
+                                        var PictureContainer = btn.parents('.parent');
+                                        PictureContainer.addClass('animate__animated animate__zoomOut');
+                                        setTimeout(function () {
+                                            PictureContainer.remove();
+                                        }, 1000);
+                                        toastr.success("Blog Deleted!");
+                                    },
+                                    error: function () {
+                                        toastr.error("Somthing Went error");
+                                    }
+                                });
+                            }
+                        }
+                });
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,87 @@
+﻿@model BiographyUpdateDTO
+@{
+    ViewData["Title"] = "Update Profile";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Update Profile</h1>
+
+
+<div class="card">
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="Biography" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <textarea asp-for="About" cols="4" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Image" />
+
+            
+            <div class="form-group">
+                <input type="file" class="custom-file" asp-for="Image" id="BioImage" accept="image/*" />
+                <label class="custom-file-label" asp-for="Image"></label>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Image" class="form-label col-md-2 col-sm-6"></label>
+                <div class="col-md-8 col-sm-6">
+                    <input class="form-control" type="file" asp-for="Image" id="BioImage">
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input type="text" asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input type="text" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input type="text" asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facebook" class="control-label"></label>
+                <input type="text" asp-for="Facebook" class="form-control" />
+                <span asp-validation-for="Facebook" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Twitter" class="control-label"></label>
+                <input type="text" asp-for="Twitter" class="form-control" />
+                <span asp-validation-for="Twitter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instagram" class="control-label"></label>
+                <input type="text" asp-for="Instagram" class="form-control" />
+                <span asp-validation-for="Instagram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-outline-secondary" value="Update Profile" />
+                <a asp-controller="Biography" asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_Validation" />
+<script>
+    $(document).ready(function () {
+        $('#BioImage').on('change', function () {
+            var selectedFile = $(this).val().split('\\').pop();
+            var postercontainer = $('#picture-container');
+            $(this).siblings('label').text(selectedFile);
+            var image = window.URL.createObjectURL(this.files[0]);
+            postercontainer.find('img').attr('src', image);
+        });
+</script>
+}

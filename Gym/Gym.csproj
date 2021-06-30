@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\Admin\plugins\jquery\**" />
+    <Content Remove="wwwroot\Admin\plugins\jquery\**" />
+    <EmbeddedResource Remove="wwwroot\Admin\plugins\jquery\**" />
+    <None Remove="wwwroot\Admin\plugins\jquery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\images\doctors\" />
+    <Folder Include="wwwroot\images\blogs\" />
+    <Folder Include="wwwroot\images\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\User\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\User\js\custom.js" />
+    <None Include="wwwroot\User\js\jquery-3.0.0.min.js" />
+    <None Include="wwwroot\User\js\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="wwwroot\User\js\jquery.min.js" />
+    <None Include="wwwroot\User\js\jquery.validate.js" />
+    <None Include="wwwroot\User\js\plugin.js" />
+    <None Include="wwwroot\User\js\popper.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="cloudscribe.Pagination.Models" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="NToastNotify" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

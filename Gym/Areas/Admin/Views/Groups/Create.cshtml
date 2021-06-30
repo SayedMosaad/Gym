@@ -1,0 +1,30 @@
+﻿@model GroupDTO
+@{
+    ViewData["Title"] = "Add Group";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4>Add Group</h4>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Groups" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Group" class="btn btn-outline-primary" />
+                <a asp-controller="Groups" asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_Validation" />
+}

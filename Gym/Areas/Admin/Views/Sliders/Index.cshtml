@@ -1,0 +1,85 @@
+﻿@model IEnumerable<SliderReadDTO>
+@{
+    ViewData["Title"] = "Slider";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row mt-2">
+    <div class="col-12">
+        <p class="mt-2">
+            <a asp-controller="Sliders" asp-action="Create" asp-area="Admin" class="btn btn-info add">Add Slider Data</a>
+        </p>
+        <br />
+        @if (!Model.Any())
+        {
+            <p>There  is no data here!</p>
+        }
+        @foreach (var item in Model)
+        {
+            <div class="card m-1 col-md-11">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class="col-md-4">
+                            <h3>Title: @Html.DisplayFor(m => item.Title)</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <a asp-controller="sliders" asp-action="Edit" asp-area="Admin" asp-route-id="@item.ID" class="btn btn-primary fas fa-edit"></a>
+                            <a href="javascript:;" data-id="@item.ID" class="btn btn-danger js-delete"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>Subtitle</h4>
+                    <p>@item.Subtitle</p>
+                    <h4>Description</h4>
+                    <p>@item.Description</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts
+{
+   
+    <script>
+        
+
+            $(document).ready(function () {
+                $(".js-delete").on('click', function () {
+                    var btn = $(this);
+                    bootbox.confirm({
+                        message: "Are you sure you want to delete this slider?",
+                        buttons: {
+                            confirm: {
+                                label: 'Yes',
+                                className: 'btn-danger'
+                            },
+                            cancel: {
+                                label: 'No',
+                                className: 'btn-outline-secondary'
+                            }
+                        },
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Admin/Sliders/Delete/' + btn.data('id'),
+                                    success: function () {
+                                        var movieContainer = btn.parents('.card');
+                                        movieContainer.addClass('animate__animated animate__zoomOut');
+                                        setTimeout(function () {
+                                            movieContainer.remove();
+                                        }, 1000);
+                                        toastr.success("Slider Deleted!");
+                                    },
+                                    error: function () {
+                                        toastr.error("Somthing Went error");
+                                    }
+                                });
+                            }
+                        }
+
+                    });
+                });
+            });
+        </script>
+}

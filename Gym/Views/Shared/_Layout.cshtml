@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>@ViewData["Title"]</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="/User/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="/User/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="/User/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="/User/images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="/User/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- owl stylesheets -->
+    <link rel="stylesheet" href="/User/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/User/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link href="~/User/css/navstyle.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!--header section start -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="logo"><a asp-controller="Home" asp-action="Index"><img src="/User/images/logo.png"></a></div>
+                </div>
+                <div class="col-md-10">
+                    <div class="menu_text">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                            <li><a asp-controller="About" asp-action="Index">ABOUT</a></li>
+                            <li><a asp-controller="Certificates" asp-action="Index">Certificates</a></li>
+                            <li><a asp-controller="Blogs" asp-action="Index">Blogs</a></li>
+                            <li><a asp-controller="Doctors" asp-action="Index">Doctors</a></li>
+                            <li><a asp-controller="Gallary" asp-action="Index">Gallary</a></li>
+                            <li><a asp-controller="Contact" asp-action="Index">CONTACT US</a></li>
+                            <div id="myNav" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <div class="overlay-content">
+                                    <a asp-controller="Home" asp-action="Index">HOME</a>
+                                    <a asp-controller="About" asp-action="Index">ABOUT</a>
+                                    <a asp-controller="Certificates" asp-action="Index">Certificates</a>
+                                    <a asp-controller="Blogs" asp-action="Index">Blogs</a>
+                                    <a asp-controller="Doctors" asp-action="Index">Doctors</a>
+                                    <a asp-controller="Gallary" asp-action="Index">Gallary</a>
+                                    <a asp-controller="Contact" asp-action="Index">CONTACT US</a>
+                                </div>
+                            </div>
+                            <span style="font-size:33px;cursor:pointer; color: #ffffff;" onclick="openNav()"><img src="/User/images/toggle.png" class="toggle_menu"></span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header section end -->
+    
+    @RenderBody()
+    
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+        <div class="footer_section_2">
+            <div class="container">
+                <partial name="_footer" />
+
+                <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="https://html.design"> Free  html Templates</p>
+            </div>
+        </div>
+    </div>
+    <!-- footer section end -->
+    <!-- Javascript files-->
+    <script src="~/User/lib/jquery/jquery.js"></script>
+    <script src="/User/js/popper.min.js"></script>
+    <script src="/User/js/bootstrap.bundle.min.js"></script>
+    <script src="/User/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="/User/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/User/js/custom.js"></script>
+    <!-- javascript -->
+    <script src="/User/js/owl.carousel.js"></script>
+    @*<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>*@
+    @*<script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+    </script>*@
+
+
+    <script>
+            function openNav() {
+                document.getElementById("myNav").style.width = "100%";
+            }
+
+            function closeNav() {
+                document.getElementById("myNav").style.width = "0%";
+            }
+        </script>
+
+
+
+
+</body>
+</html>    

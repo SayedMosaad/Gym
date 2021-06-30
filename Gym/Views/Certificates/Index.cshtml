@@ -1,0 +1,25 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Certificates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="our_section layout_padding">
+    <div class="container" style="min-height:600px;">
+        <div class="row align-content-center">
+            <h1 class="mb-3 "><strong>Check Your Certificate</strong></h1>
+        </div>
+        <hr />
+        <form asp-controller="Certificates" asp-action="GetCertificate" method="get">
+            <div class="form-group row">
+                <label class="col-md-3" asp-for="Certificate.ID">Please enter your Certificate ID</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Certificate.ID" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Get Certificate" class="btn btn-outline-info" />
+            </div>
+        </form>
+    </div>
+</div>

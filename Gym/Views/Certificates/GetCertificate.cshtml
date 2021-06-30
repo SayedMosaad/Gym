@@ -1,0 +1,44 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "GetCertificate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="our_section layout_padding">
+    <div class="container" style="min-height:600px;">
+        <div class="row align-content-center">
+            <h1 class="mb-3 "><strong>Professional Training Certificate</strong></h1>
+        </div>
+        <hr />
+        <table class="table-borderless">
+            <tr class="d-flex">
+                <td class="col-2">Name</td>
+                <td class="col-8">@Model.Certificate.Name</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Subject</td>
+                <td class="col-8">@Model.Certificate.Subject</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Grade</td>
+                <td class="col-8">@Model.Certificate.Grade</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Issued On</td>
+                <td class="col-8">@Model.Certificate.Date</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Certificate ID</td>
+                <td class="col-8">@Model.Certificate.ID</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Trainning Hours</td>
+                <td class="col-8">@Model.Certificate.Hours</td>
+            </tr>
+            <tr class="d-flex">
+                <td class="col-2">Trained By</td>
+                <td class="col-8">@Model.Certificate.Doctor.Name</td>
+            </tr>
+        </table>
+    </div>
+</div>

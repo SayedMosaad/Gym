@@ -1,0 +1,63 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Request>
+@{
+    ViewData["Title"] = "Customers List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-2">Name</th>
+                    <th class="col-3">Email</th>
+                    <th class="col-2">phone</th>
+                    <th class="col-4">Message</th>
+                    <th class="col-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Data.Any())
+                {
+                    foreach (var item in Model.Data)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-2">@item.Name</td>
+                            <td class="col-3">@item.Email</td>
+                            <td class="col-2">@item.phone</td>
+                            <td class="col-4">@item.Message</td>
+                            <td class="col-1">
+                                <a asp-action="Details" asp-route-id="@item.ID" class="fas fa-info-circle text-info"></a>
+                                <a asp-action="Delete" asp-route-id="@item.ID" class="fas fa-trash-alt text-danger"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="d-flex">
+
+                        <td class="col-12">
+                            No data found
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <cs-pager cs-paging-pagenumber=(int)@Model.PageNumber
+                  cs-paging-totalitems=(int)@Model.TotalItems
+                  cs-paging-pagesize=@Model.PageSize
+                  cs-pagenumber-param="PageNumber"
+                  asp-controller="Requests"
+                  asp-action="Index"
+                  cs-pager-li-current-class="page-item active"
+                  cs-pager-li-other-class="page-item"
+                  cs-pager-li-non-active-class="page-item disabled"
+                  cs-pager-link-current-class="page-link"
+                  cs-pager-link-other-class="page-link">
+        </cs-pager>
+    </div>
+</div>

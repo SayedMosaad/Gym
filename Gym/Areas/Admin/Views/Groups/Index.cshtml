@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Gym.Areas.Admin.Models.Group>
+
+@{
+    ViewData["Title"] = "Groups";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p>
+    <a asp-controller="Groups" asp-action="Create" class="btn btn-primary mt-2">Add New Group</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-alarm"></i>
+        No Groups Found!
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="parent">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="fas fa-edit text-primary"></a>
+                        <a asp-action="Details" asp-route-id="@item.ID" class="fas fa-info text-info"></a>
+                        <a href="javascript:;" data-id="@item.ID" class="fas fa-trash text-danger js-delete"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on('click', function () {
+                var btn = $(this);
+
+                bootbox.confirm(
+                    {
+                        message: "Are you sure you want to delete this Group?",
+                        buttons: {
+                            confirm: {
+                                label: 'Yes',
+                                className: 'btn-danger'
+                            },
+                            cancel: {
+                                label: 'No',
+                                className: 'btn-outline-secondary'
+                            }
+                        }
+                        ,
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Admin/Groups/Delete/' + btn.data('id'),
+                                    success: function () {
+                                        var PictureContainer = btn.parents('.parent');
+                                        PictureContainer.addClass('animate__animated animate__zoomOut');
+                                        setTimeout(function () {
+                                            PictureContainer.remove();
+                                        }, 1000);
+                                        toastr.success("Group Deleted!");
+                                    },
+                                    error: function () {
+                                        toastr.error("Somthing Went error");
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+            });
+        });
+    </script>
+}

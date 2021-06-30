@@ -1,0 +1,78 @@
+﻿@model CreateBlogsViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Add New Blog</h3>
+    </div>
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="Blogs" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input type="file" asp-for="File" id="blogimage" class="form-control" />
+                <span asp-validation-for="File" id="fileerror" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea asp-for="Body" class="form-control" cols="5" rows="8"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Blog" id="save" class="btn btn-outline-primary" />
+                <a asp-area="Admin" asp-controller="blogs" asp-action="index" class="btn btn-outline-danger">cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    <partial name="_Validation" />
+
+    <script>
+        $(function () {
+            $("#save").click(function () {
+
+                //check if we upload the file
+                if ($("#blogimage").val() == "") {
+                    $("#fileerror").append("Please choose Image for the Blog");
+                    return false;
+                }
+
+                if ($("#blogimage").val() != "") {
+
+                //check the file extention
+                    var fileName = document.getElementById("blogimage").value;
+                    var extention = fileName.substr(fileName.lastIndexOf('.') + 1);
+                    var validExtension = ['jpg', 'jpeg', 'png'];
+                    if ($.inArray(extention, validExtension) == -1) {
+                        $("#fileerror").append("Please choose a valid extension");
+                        return false;
+                    }
+
+                    //check the valid size
+                    var fileSize = document.getElementById("blogimage").files[0].siz / 1024 / 1024;
+                    if (fileSize > 5) {
+                        $("#fileerror").append("The Image Size should not be more the 5 MB");
+                        return false;
+                    }
+
+                }
+            });
+        });
+
+    </script>
+}

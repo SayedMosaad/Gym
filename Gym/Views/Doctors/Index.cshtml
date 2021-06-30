@@ -1,0 +1,38 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Doctors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- our service section start -->
+<div class="our_section layout_padding">
+    <div class="container">
+        <h1 class="our_text"><strong>OUR Doctors</strong></h1>
+        
+        <div class="row padding_top_0">
+            @foreach (var doctor in Model.Doctors)
+            {
+                <div class="col-lg-4">
+                    <div class="image_7"><img src="/images/doctors/@doctor.Image" class="img-circle img-fluid" style="width:100%;height:250px; object-fit:contain;"></div>
+                    <h2 class="design_text">@doctor.Name</h2>
+                    <p class="fact_text">@doctor.Bio</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<!-- our service section end -->
+<!-- project section start -->
+<div class="project_section layout_padding about_main">
+    <div class="container">
+        <h1 class="partner_text">PARTNER<br> UP-DOUBLE POWER</h1>
+        <p class="lorem_ipsum_text">
+            Be Ready to Start with us
+        </p>
+        <div class="choice_main">
+            <div class="choose_bt"><a asp-controller="Contact" asp-action="Index">CHOOSE YOUR TRAINER</a></div>
+        </div>
+    </div>
+</div>
+<!-- project section end -->

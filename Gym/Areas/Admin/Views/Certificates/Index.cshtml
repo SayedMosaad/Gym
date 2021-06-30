@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Certificate>
+
+@{
+    ViewData["Title"] = "Certificates";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create">Add New Certificate</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="parent">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="fas fa-edit text-primary"></a> |
+                    <a href="javascript:;" data-id="@item.ID" class="fas fa-trash text-danger js-delete"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on('click', function () {
+                var btn = $(this);
+
+                bootbox.confirm(
+                    {
+                        message: "Are you sure you want to delete this Certificate?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-outline-secondary'
+                        }
+                        }
+                        ,
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Admin/Certificates/Delete/' + btn.data('id'),
+                                    success: function () {
+                                        var PictureContainer = btn.parents('.parent');
+                                        PictureContainer.addClass('animate__animated animate__zoomOut');
+                                        setTimeout(function () {
+                                            PictureContainer.remove();
+                                        }, 1000);
+                                        toastr.success("Certificate Deleted!");
+                                    },
+                                    error: function () {
+                                        toastr.error("Somthing Went error");
+                                    }
+                                });
+                            }
+                        }
+                });
+
+            });
+        });
+    </script>
+}

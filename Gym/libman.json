@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/Admin/plugins/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "bootbox.js@5.5.2",
+      "destination": "wwwroot/Admin/plugins/bootbox.js/"
+    },
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/Admin/plugins/animate.css/",
+      "files": [
+        "animate.min.css"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@5.0.2",
+      "destination": "wwwroot/User/lib/bootstrap/"
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/User/lib/jquery/"
+    }
+  ]
+}
