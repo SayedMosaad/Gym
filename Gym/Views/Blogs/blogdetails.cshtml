@@ -1,0 +1,21 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "blogdetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="our_section layout_padding">
+    <div class="container">
+        <h1 class="our_text"><strong>@Model.Blog.Title</strong></h1>
+        
+        <div class="row padding_top_0">
+            <div class="col-md-8 col-sm-6">
+            <img class="img-thumbnail" src="~/images/blogs/@Model.Blog.Image" />
+            </div>
+            <div class="col-md-8 col-sm-6">
+                <p>@Model.Blog.Body</p>
+            </div>
+        </div>
+
+    </div>
+</div>

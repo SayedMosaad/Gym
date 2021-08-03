@@ -4,17 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="our_section layout_padding">
     <div class="container" style="min-height:600px;">
         <div class="row align-content-center">
             <h1 class="mb-3 "><strong>Check Your Certificate</strong></h1>
         </div>
         <hr />
-        <form asp-controller="Certificates" asp-action="GetCertificate" method="get">
+        <form asp-controller="Certificates" asp-action="GetCertificate">
             <div class="form-group row">
+                <input type="hidden" asp-for="Certificate.ID" />
                 <label class="col-md-3" asp-for="Certificate.ID">Please enter your Certificate ID</label>
                 <div class="col-md-9">
-                    <input type="text" asp-for="Certificate.ID" class="form-control" />
+                    <input type="text" asp-for="Certificate.ID" name="id" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">

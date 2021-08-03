@@ -28,5 +28,15 @@ namespace Gym.Controllers
             };
             return View(model);
         }
+
+        public ActionResult blogdetails(int id)
+        {
+            var model = new IndexViewModel
+            {
+                Biographies=repository.List().ToList(),
+                Blog=blogrepository.Find(id)
+            };
+            return View(model);
+        }
     }
 }

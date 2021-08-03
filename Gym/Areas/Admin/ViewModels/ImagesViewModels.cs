@@ -10,6 +10,8 @@ namespace Gym.Areas.Admin.ViewModels
 {
     public class CreateImagesViewModel
     {
+        public int Id { get; set; }
+        public string ImageUrl { get; set; }
         public List<IFormFile> File { get; set; }
         [Display(Name = "Project")]
         public int GroupId { get; set; }
@@ -18,7 +20,6 @@ namespace Gym.Areas.Admin.ViewModels
 
     public class EditImagesViewModel : CreateImagesViewModel
     {
-        public int Id { get; set; }
-        public string ImageUrl { get; set; }
+
     }
 }

@@ -28,12 +28,16 @@ namespace Gym.Controllers
             };
             return View(model);
         }
+
         public ActionResult GetCertificate(int id)
         {
+            var certificate = from c in certificaterepository.List()
+                              select c;
+            
             var model = new IndexViewModel
             {
                 Biographies = repository.List().ToList(),
-                Certificate=certificaterepository.Find(id)
+                Certificate=certificate.Where(x=>x.ID==id).FirstOrDefault()
             };
             return View(model);
         }

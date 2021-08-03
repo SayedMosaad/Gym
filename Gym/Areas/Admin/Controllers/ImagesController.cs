@@ -69,19 +69,15 @@ namespace Gym.Areas.Admin.Controllers
                     };
                     repository.Add(Image);
                 }
-                //var Groups = groupRepository.Find(model.GroupId);
-                //var Image = new Image
-                //{
-                //    photo = FileName,
-                //    Group = Groups
-                //};
-                //repository.Add(Image);
+
                 toastNotification.AddSuccessToastMessage("Images has been added");
                 return RedirectToAction("Details","Groups",new {id=model.GroupId });
             }
             return View(model);
 
         }
+
+
 
         public ActionResult Delete(int id)
         {
@@ -97,6 +93,27 @@ namespace Gym.Areas.Admin.Controllers
                 System.IO.File.Delete(path);
             }
             return Ok();
+        }
+
+        public IActionResult Upload()
+        {
+            var files = Request.Form.Files;
+            var obj = new object { };
+            foreach (var file in files)
+            {
+                string filedic = "/images/images";
+                string filePath = Path.Combine(hosting.WebRootPath, filedic);
+                if(!Directory.Exists(filePath))
+                {
+                    Directory.CreateDirectory(filePath);
+                }
+                var uniquefilename = Guid.NewGuid() + "_" + file.FileName;
+                filePath = Path.Combine(filePath, uniquefilename);
+                using FileStream fs = System.IO.File.Create(filePath);
+                file.CopyTo(fs);
+                obj = new { linl = "/images/images" + uniquefilename };
+            }
+            return Json(obj);
         }
 
         string UploadFile(IFormFile file)
