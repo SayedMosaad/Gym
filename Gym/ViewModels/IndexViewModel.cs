@@ -19,18 +19,20 @@ namespace Gym.ViewModels
         public List<Group> Groups { get; set; }
         public Group Group { get; set; }
         public List<Image> Images { get; set; }
+        public List<Course> Courses { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Name is Required")]
         [MinLength(4, ErrorMessage = "Please enter at least 4 chars")]
         public string Name { get; set; }
 
-        [Required]
+        [Required (ErrorMessage ="Email is Required")]
         [EmailAddress(ErrorMessage = "Please enter a valid email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Phone number is Required")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Message is Required")]
         public string Message { get; set; }
     }
 }

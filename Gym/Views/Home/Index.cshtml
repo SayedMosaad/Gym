@@ -3,11 +3,11 @@
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!-- banner section start -->
 <div class="banner_section layout_padding">
     <div id="my_Controls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
+
             @for (int i = 0; i < Model.Sliders.Count; i++)
             {
                 if (i == 0)
@@ -20,9 +20,6 @@
                                 <p class="long_text">
                                     @Model.Sliders[i].Description
                                 </p>
-                            </div>
-                            <div class="contact">
-                                <div class="contact_bt"><a asp-controller="Contact" asp-action="Index">Contact Us</a></div>
                             </div>
                         </div>
                     </div>
@@ -38,22 +35,12 @@
                                     @Model.Sliders[i].Description
                                 </p>
                             </div>
-                            <div class="contact">
-                                <div class="contact_bt"><a asp-controller="Contact" asp-action="Index">Contact Us</a></div>
-                            </div>
                         </div>
                     </div>
                 }
             }
         </div>
-        <a class="carousel-control-prev" href="#my_Controls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#my_Controls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        
     </div>
 
 </div>

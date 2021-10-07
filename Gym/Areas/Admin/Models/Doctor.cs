@@ -13,5 +13,6 @@ namespace Gym.Areas.Admin.Models
         public string Image { get; set; }
         public string Bio { get; set; }
         public ICollection<Certificate> Certificates { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

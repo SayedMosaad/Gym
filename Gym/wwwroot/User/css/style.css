@@ -249,7 +249,7 @@ button {
 
 .menu_text li {
     float: left;
-    padding-right: 80px;
+    padding-right: 35px;
     font-size: 18px;
     color: #ffffff;
 }
@@ -307,12 +307,13 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
+    background-image: url(../images/12.jpg);
     height: auto;
     background-size: contain;
     padding: 200px 0px 90px 0px;
     background-repeat: no-repeat;
     background-size: 100%;
+    min-height: 850px;
 }
 
 .banner_taital {
@@ -321,6 +322,7 @@ button {
     background-color: #626975;
     border-radius: 20px;
     padding: 20px 20px;
+    opacity:0;
 }
 
 .find_text{

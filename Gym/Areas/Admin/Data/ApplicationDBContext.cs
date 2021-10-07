@@ -25,7 +25,9 @@ namespace Gym.Areas.Admin.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<Request> Requests { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,0 +1,25 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="our_section layout_padding">
+    <div class="container">
+        <h1 class="our_text"><strong>OUR Courses</strong></h1>
+        <p class="client_long_text">Check our Course</p>
+        <div class="row padding_top_0">
+            @foreach (var course in Model.Courses)
+            {
+                <div class="col-lg-4">
+                    <div class="image_7"><img src="/images/courses/@course.Image"></div>
+                    <h2 class="design_text">@course.Title</h2>
+                    <p class="fact_text">@course.Description</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+

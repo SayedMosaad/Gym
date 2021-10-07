@@ -158,6 +158,24 @@
                             </li>
                         }
 
+                        @if (controller == "Courses")
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Courses" asp-action="Index" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Courses</p>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Courses" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Courses</p>
+                                </a>
+                            </li>
+                        }
                         @if (controller == "Doctors")
                         {
                             <li class="nav-item">

@@ -29,11 +29,20 @@ namespace Gym.Controllers
             return View(model);
         }
 
-        public ActionResult GetCertificate(int id)
+        public ActionResult GetCertificate(int? id)
         {
+            if(id==null)
+            {
+                return BadRequest();
+            }
+
             var certificate = from c in certificaterepository.List()
                               select c;
-            
+            if(certificate==null)
+            {
+                return NotFound();
+            }
+
             var model = new IndexViewModel
             {
                 Biographies = repository.List().ToList(),

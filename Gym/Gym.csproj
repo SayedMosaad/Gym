@@ -16,6 +16,7 @@
     <Folder Include="wwwroot\images\doctors\" />
     <Folder Include="wwwroot\images\blogs\" />
     <Folder Include="wwwroot\images\images\" />
+    <Folder Include="wwwroot\images\courses\" />
   </ItemGroup>
 
   <ItemGroup>

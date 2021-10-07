@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Course>
+
+@{
+    ViewData["Title"] = "Courses";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p>
+    <a asp-controller="Courses" asp-action="Create" class="btn btn-outline-primary mb-3">Add New Course</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th class="col-4">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="col-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th class="col-2">
+                @Html.DisplayNameFor(model => model.Doctors)
+            </th>
+            <th class="col-2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="parent d-flex">
+                <td class="col-2">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="col-4">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="col-2">
+                    <img src="~/images/courses/@item.Image" style="width:150px; height:150px;" />
+                </td>
+                <td class="col-2">
+                    @Html.DisplayFor(modelItem => item.Doctors.Name)
+                </td>
+                <td class="col-2">
+                    <a asp-area="Admin" asp-controller="Courses" asp-action="Edit" asp-route-id="@item.ID" class="fas fa-edit text-primary"></a>
+                    <a asp-area="Admin" asp-controller="Courses" asp-action="Details" asp-route-id="@item.ID" class="fas fa-info-circle text-info"></a>
+                    <a href="javascript:;" data-id="@item.ID" class="fas fa-trash text-danger js-delete"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on('click', function () {
+                var btn = $(this);
+
+                bootbox.confirm(
+                    {
+                    message: "Are you sure you want to delete this Course?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-outline-secondary'
+                        }
+                        }
+                        ,
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Admin/Courses/Delete/' + btn.data('id'),
+                                    success: function () {
+                                        var PictureContainer = btn.parents('.parent');
+                                        PictureContainer.addClass('animate__animated animate__zoomOut');
+                                        setTimeout(function () {
+                                            PictureContainer.remove();
+                                        }, 1000);
+                                        toastr.success("Course Deleted!");
+                                    },
+                                    error: function () {
+                                        toastr.error("Somthing Went error");
+                                    }
+                                });
+                            }
+                        }
+                });
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,79 @@
+﻿@model CourseViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Add New Course</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" cols="4" rows="3" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input type="file" asp-for="File" id="courseimage" class="form-control" />
+                <span asp-validation-for="File" id="fileerror" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" class="form-control" asp-items="@(new SelectList(Model.Doctors,"ID","Name"))"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Course" class="btn btn-primary" />
+                <a asp-controller="Courses" asp-action="Index" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_Validation" />
+
+    <script>
+        $(function () {
+            $("#save").click(function () {
+
+                //check if we upload the file
+                if ($("#courseimage").val() == "") {
+                    $("#fileerror").append("Please choose Image for the Blog");
+                    return false;
+                }
+
+                if ($("#courseimage").val() != "") {
+
+                    //check the file extention
+                    var fileName = document.getElementById("blogimage").value;
+                    var extention = fileName.substr(fileName.lastIndexOf('.') + 1);
+                    var validExtension = ['jpg', 'jpeg', 'png'];
+                    if ($.inArray(extention, validExtension) == -1) {
+                        $("#fileerror").append("Please choose a valid extension");
+                        return false;
+                    }
+
+                    //check the valid size
+                    var fileSize = document.getElementById("courseimage").files[0].siz / 1024 / 1024;
+                    if (fileSize > 5) {
+                        $("#fileerror").append("The Image Size should not be more the 5 MB");
+                        return false;
+                    }
+
+                }
+            });
+        });
+
+    </script>
+}

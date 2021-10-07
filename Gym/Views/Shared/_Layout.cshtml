@@ -36,18 +36,19 @@
     <!--header section start -->
     <div class="header">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-between">
                 <div class="col-md-2">
                     <div class="logo"><a asp-controller="Home" asp-action="Index"><img src="/User/images/logo.png"></a></div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
                     <div class="menu_text">
                         <ul>
                             <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
                             <li><a asp-controller="About" asp-action="Index">ABOUT</a></li>
-                            <li><a asp-controller="Certificates" asp-action="Index">Certificates</a></li>
+                            <li><a asp-controller="Certificates" asp-action="Index">Check Your Certificates</a></li>
                             <li><a asp-controller="Blogs" asp-action="Index">Blogs</a></li>
                             <li><a asp-controller="Doctors" asp-action="Index">Doctors</a></li>
+                            <li><a asp-controller="Courses" asp-action="Index">Courses</a></li>
                             <li><a asp-controller="Gallary" asp-action="Index">Gallary</a></li>
                             <li><a asp-controller="Contact" asp-action="Index">CONTACT US</a></li>
                             <div id="myNav" class="overlay">
@@ -55,9 +56,10 @@
                                 <div class="overlay-content">
                                     <a asp-controller="Home" asp-action="Index">HOME</a>
                                     <a asp-controller="About" asp-action="Index">ABOUT</a>
-                                    <a asp-controller="Certificates" asp-action="Index">Certificates</a>
+                                    <a asp-controller="Certificates" asp-action="Index">Check Your Certificates</a>
                                     <a asp-controller="Blogs" asp-action="Index">Blogs</a>
                                     <a asp-controller="Doctors" asp-action="Index">Doctors</a>
+                                    <a asp-controller="Courses" asp-action="Index">Courses</a>
                                     <a asp-controller="Gallary" asp-action="Index">Gallary</a>
                                     <a asp-controller="Contact" asp-action="Index">CONTACT US</a>
                                 </div>
@@ -71,6 +73,7 @@
     </div>
 
     <!-- header section end -->
+    
     
     @RenderBody()
     

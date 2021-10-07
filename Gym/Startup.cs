@@ -48,6 +48,7 @@ namespace Gym
             services.AddScoped<IApplicationRepository<Image>, ImagesRepository>();
             services.AddScoped<IApplicationRepository<Certificate>, CetificateRepository>();
             services.AddScoped<IApplicationRepository<Request>, RequestRepository>();
+            services.AddScoped<IApplicationRepository<Course>, CoursesRepository>();
 
         }
 
